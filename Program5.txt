@@ -1,0 +1,57 @@
+-- 
+-- Roll No: <54>
+-- Name: <SREEDEV V>
+-- Program: < Vehicle Insurance Management System - II >
+-- 
+
+
+--
+-- Table structure for table < >
+--
+
+
+-- ---------create/alter statement commands----------- # This line may be removed in the actual file
+
+
+--
+-- Dumping data for table <table_name>
+--
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+create view policy_holder as select policy_no, issue_date, name, reg_no, make, model, yom, cc, sc, value, policy_amt, mode from policy natural join(vehicle natural join(owns natural join customer));
+
+
+create view claim as select claim_no, policy_no, name , reg_no, doa, location, make, model, amt  from policy natural join(customer natural join(vehicle natural join (accident natural join participated)));
+
+select monthname('2022-05-01');
+select month('2022-05-01');
+select day('2022-05-01');
+select dayname('2022-05-01');
+select year('2022-05-01');
+
+delimiter $$
+create procedure policy2(IN claim_number varchar(10),OUT amount int)
+begin
+select amt from participated
+where claim_number=claim_no;
+end$$
+
+delimiter ;
+call policy2('01',@name);
+
+
+
+create trigger deleteVehicle
+before delete
+on vehicle
+for each row
+begin
+delete from policy where reg_no=old.reg_no;
+delete from owns where reg_no=old.reg_no;
+delete from participated where reg_no=old.reg_no;
+end $$
+

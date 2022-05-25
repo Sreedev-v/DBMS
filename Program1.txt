@@ -1,0 +1,29 @@
+-- 
+-- Roll No: <54>
+-- Name: <SREEDEV V>
+-- Program: <Assignment 1>
+-- 
+
+
+--
+-- Table structure for table <faculty>
+--
+create table faculty (fno int(5) primary key, fname varchar(15)not null, doj date not null, specialization varchar(15));
+--
+-- Table structure for table <faculty>
+--
+create table subject(sname varchar(15)not null,sdate date not null,edate date not null,roomno char(5)not null,primary key(sname,roomno),fno varchar(5),foreign key(fno)references faculty(fno));
+
+--
+-- Dumping data for table <table_name>
+--
+
+-- --------insert/update statement commands----------- # This line may be removed in the actcual file
+
+--
+-- SQl Query Statements
+--
+
+-- -----SQL query statments preceeded by the its question-------- # This line may be removed in the actual file
+-- -----Question number should be commented---------------#This line may be removed in the actual file
+
